@@ -3,14 +3,18 @@ package com.hg.gxutapp.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,15 +73,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+            getWindow().setAttributes(lp);
+        } else if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            //设置让应用主题内容占据状态栏和导航栏
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            //设置状态栏和导航栏颜色为透明
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        }
 
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-
-        lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-
-        getWindow().setAttributes(lp);
         setContentView(R.layout.activity_login);
-
         studentHelper = new StudentHelper(this);
         initView();
 
@@ -127,9 +138,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, "密码最少6位", Toast.LENGTH_LONG).show();
                         dismissProgressDialog();
                     } else {
-                        studentHelper.login(studentUserName.getText().toString(), studentPassword.getText().toString(),handler);
+                        studentHelper.login(studentUserName.getText().toString(), studentPassword.getText().toString(), handler);
                     }
-                }else {
+                } else {
                     Toast.makeText(LoginActivity.this, "未开放", Toast.LENGTH_LONG).show();
                     dismissProgressDialog();
                 }
@@ -255,7 +266,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public Boolean dismissProgressDialog() {
-        if (progressDialog != null){
+        if (progressDialog != null) {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
                 return true;//取消成功

@@ -22,6 +22,8 @@
                 android:src="@drawable/student" />
 
             <EditText
+                android:singleLine="true"
+                android:maxLines="1"
                 android:id="@+id/login_student_name"
                 android:background="@null"
                 android:textSize="13sp"
@@ -51,6 +53,8 @@
                 android:src="@drawable/password"/>
 
             <EditText
+                android:singleLine="true"
+                android:maxLines="1"
                 android:id="@+id/login_student_password"
                 android:background="@null"
                 android:textSize="13sp"
