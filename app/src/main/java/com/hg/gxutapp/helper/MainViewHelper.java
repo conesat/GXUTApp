@@ -1,7 +1,11 @@
 package com.hg.gxutapp.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hg.gxutapp.R;
+import com.hg.gxutapp.activity.LoginActivity;
+import com.hg.gxutapp.activity.MainActivity;
 import com.hg.gxutapp.adapter.AppItemRecyclerViewAdapter;
 import com.hg.gxutapp.adapter.HostClassItemRecyclerViewAdapter;
 import com.hg.gxutapp.adapter.RecommendItemRecyclerViewAdapter;
@@ -29,6 +36,9 @@ import java.util.List;
 
 public class MainViewHelper {
     private Context context;
+
+
+    public static Handler handler;
 
     private View main;
 
@@ -139,6 +149,7 @@ public class MainViewHelper {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 tag:
                 while (true) {
                     for (int i = 0; i < 5; i++) {
@@ -151,24 +162,12 @@ public class MainViewHelper {
                             e.printStackTrace();
                         }
                     }
-                    carouselPoints.get(current).setImageResource(R.drawable.gray_r);
-                    if (carouselType == 0) {
-                        if (current < carouselViews.size() - 1) {
-                            current++;
-                        } else {
-                            current--;
-                            carouselType = 1;
-                        }
-                    } else {
-                        if (current > 0) {
-                            current--;
-                        } else {
-                            current++;
-                            carouselType = 0;
-                        }
-                    }
-                    carouselViewPager.setCurrentItem(current);
-                    carouselPoints.get(current).setImageResource(R.drawable.bg_r);
+                    Bundle b = new Bundle();
+                    Message msg = new Message();
+                    b.putInt("current", current);
+                    msg.setData(b);
+                    handler.sendMessage(msg);
+
                 }
             }
         }).start();
@@ -196,6 +195,36 @@ public class MainViewHelper {
                     RUN = true;
             }
         });
+
+        handler = new Handler() {
+            //这是默认的方法
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                Bundle b = msg.getData();
+                int current = b.getInt("current");
+                carouselPoints.get(current).setImageResource(R.drawable.gray_r);
+                if (carouselType == 0) {
+                    if (current < carouselViews.size() - 1) {
+                        current++;
+                    } else {
+                        current--;
+                        carouselType = 1;
+                    }
+                } else {
+                    if (current > 0) {
+                        current--;
+                    } else {
+                        current++;
+                        carouselType = 0;
+                    }
+                }
+
+                carouselViewPager.setCurrentItem(current);
+                carouselPoints.get(current).setImageResource(R.drawable.bg_r);
+            }
+        };
+
     }
 
 
