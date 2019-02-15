@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#000"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:src="@drawable/main_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <LinearLayout
+                   android:gravity="center"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:padding="20dp">
+
+                   <LinearLayout
+                       android:gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1">
+
+                       <LinearLayout
+                           android:id="@+id/home"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:paddingLeft="20dp"
+                           android:paddingTop="5dp"
+                           android:paddingRight="20dp"
+                           android:paddingBottom="5dp">
+
+                           <ImageView
+                               android:layout_width="20dp"
+                               android:layout_height="20dp"
+                               android:src="@drawable/home" />
+
+                           <TextView
+                               android:textSize="12sp"
+                               android:layout_width="wrap_content"
+                               android:layout_height="match_parent"
+                               android:layout_marginLeft="10dp"
+                               android:gravity="center"
+                               android:text="主页"
+                               android:textColor="#fff"/>
+                       </LinearLayout>
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1">
+
+                       <LinearLayout
+                           android:id="@+id/login_student"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:background="@drawable/bg_r"
+                           android:paddingLeft="20dp"
+                           android:paddingTop="5dp"
+                           android:paddingRight="20dp"
+                           android:paddingBottom="5dp">
+
+                           <ImageView
+                               android:id="@+id/login_student_img"
+                               android:layout_width="25dp"
+                               android:layout_height="25dp"
+                               android:src="@drawable/student" />
+
+                           <TextView
+                               android:id="@+id/login_student_text"
+                               android:textSize="14sp"
+                               android:layout_width="wrap_content"
+                               android:layout_height="match_parent"
+                               android:layout_marginLeft="10dp"
+                               android:gravity="center"
+                               android:text="学生"
+                               android:textColor="#fff"/>
+                       </LinearLayout>
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1">
+
+                       <LinearLayout
+                           android:id="@+id/login_teacher"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:paddingLeft="20dp"
+                           android:paddingTop="5dp"
+                           android:paddingRight="20dp"
+                           android:paddingBottom="5dp">
+
+                           <ImageView
+                               android:id="@+id/login_teacher_img"
+                               android:layout_width="20dp"
+                               android:layout_height="20dp"
+                               android:src="@drawable/teacher" />
+
+                           <TextView
+                               android:id="@+id/login_teacher_text"
+                               android:textSize="12sp"
+                               android:layout_width="wrap_content"
+                               android:layout_height="match_parent"
+                               android:layout_marginLeft="10dp"
+                               android:gravity="center"
+                               android:text="教师"
+                               android:textColor="#fff" />
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+           </LinearLayout>
+
+           <com.hg.gxutapp.view.NoScrollViewPager
+               android:layout_weight="1"
+               android:id="@+id/login_view_pager"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+           </com.hg.gxutapp.view.NoScrollViewPager>
+           <LinearLayout
+               android:background="#000"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <Button
+                   android:id="@+id/login_button"
+                   android:padding="15dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/bottom_bg"
+                   android:text="登 | 录"
+                   android:textColor="#fff"
+                   android:textSize="18sp" />
+           </LinearLayout>
+
+       </LinearLayout>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

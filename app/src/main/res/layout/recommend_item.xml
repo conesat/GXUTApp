@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="160dp"
+    android:layout_margin="10dp">
+
+    <com.hg.gxutapp.view.RoundImageView
+        android:id="@+id/recommend_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/main_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_black_10"
+        android:padding="5dp">
+
+        <TextView
+            android:textSize="12sp"
+            android:id="@+id/recommend_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于大世界"
+            android:textColor="#fff" />
+    </LinearLayout>
+</RelativeLayout>
