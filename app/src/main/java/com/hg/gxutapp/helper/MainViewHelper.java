@@ -241,14 +241,14 @@ public class MainViewHelper {
         appDatas = new ArrayList<>();
         AppData appData = new AppData();
         appData.setName("签到");
-        appData.setUrl("sinin");
+        appData.setUrl("signin");
         appData.setImg(BitmapFactory.decodeResource(context.getResources(), R.drawable.qiandao));
         appDatas.add(appData);
 
         appData = new AppData();
         appData.setImg(BitmapFactory.decodeResource(context.getResources(), R.drawable.files));
         appData.setName("文件收集");
-        appData.setUrl("files");
+        appData.setUrl("http://www.chinahg.top/xsp/gotoIndex");
         appDatas.add(appData);
 
         appData = new AppData();

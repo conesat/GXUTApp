@@ -129,6 +129,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         studentHelper.login(studentUserName.getText().toString(), studentPassword.getText().toString(),handler);
                     }
+                }else {
+                    Toast.makeText(LoginActivity.this, "未开放", Toast.LENGTH_LONG).show();
+                    dismissProgressDialog();
                 }
 
             }

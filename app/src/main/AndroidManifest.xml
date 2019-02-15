@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hg.gxutapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- ShareSDK -->
@@ -22,9 +23,12 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.hg.gxutapp.activity.MyScoreActivity"></activity>
-        <activity android:name="com.hg.gxutapp.activity.LoginActivity" />
-        <activity android:name="com.hg.gxutapp.activity.LoadingActivity">
+        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.CollectActivity" />
+        <activity android:name=".activity.SignInActivity" />
+        <activity android:name=".activity.MyScoreActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,19 +37,19 @@
         </activity>
 
         <service
-            android:name="com.hg.gxutapp.service.MusicService"
+            android:name=".service.MusicService"
             android:enabled="true"
             android:exported="false" />
 
         <activity
-            android:name="com.hg.gxutapp.activity.MusicActivity"
+            android:name=".activity.MusicActivity"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.hg.gxutapp.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.hg.gxutapp.activity.NewsDetailActivity"
+            android:name=".activity.NewsDetailActivity"
             android:theme="@style/AppTheme" />
     </application>
 

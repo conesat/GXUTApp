@@ -1,5 +1,7 @@
 package com.hg.gxutapp.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView mainMyImg;
     private TextView mainMyText;
 
+
+    private SharedPreferences preference;
 
     public static MainActivity mainActivity;
     @Override
@@ -125,7 +129,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mainViewPager.setAdapter(mainpagerAdapter);
 
-        (new StudentHelper(this)).getMyClass(MyViewHelper.handler);
+        preference=getSharedPreferences("user", MODE_PRIVATE);
+        if (!preference.getString("userName","").equals("")){
+            (new StudentHelper(this)).getMyClass(MyViewHelper.handler);
+        }
+
     }
 
 
@@ -152,14 +160,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mainViewPager.setCurrentItem(0);
                 break;
             case R.id.main_home:
+
                 mainHome.setBackgroundResource(R.drawable.bg_r);
                 mainHomeImg.setImageResource(R.drawable.home);
                 mainViewPager.setCurrentItem(1);
                 break;
             case R.id.main_my:
-                mainMyImg.setImageResource(R.drawable.my_1);
-                mainMyText.setTextColor(Color.argb(255,84,200,241));
-                mainViewPager.setCurrentItem(2);
+                if (!preference.getString("userName","").equals("")){
+                    mainMyImg.setImageResource(R.drawable.my_1);
+                    mainMyText.setTextColor(Color.argb(255,84,200,241));
+                    mainViewPager.setCurrentItem(2);
+                }else {
+                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    MainActivity.this.finish();
+                }
+
                 break;
         }
     }
